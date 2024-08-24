@@ -6,6 +6,20 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    db.setHostName("db4free.net");
+    db.setPort(3306);
+    db.setDatabaseName("holiwis");
+    db.setUserName("kristycush");
+    db.setPassword("Alavergawey");
+
+    if (db.open()) {
+        qDebug() << "Conectado!";
+
+    } else {
+        qDebug() << "Error: " << db.lastError().text();
+    }
+
 }
 
 MainWindow::~MainWindow()

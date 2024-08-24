@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSql>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlDriver>
+#include <QtSql/QSqlQuery>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +24,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 };
 #endif // MAINWINDOW_H
