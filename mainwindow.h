@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "nuevareserva.h"
+#include "modificar_reserva.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,6 +18,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    NuevaReserva nuevaReserva;
+    ModificarReserva modificarReserva;
+
+private slots:
+    void on_actionSalir_2_triggered();
+
+    void on_actionNueva_Reserva_2_triggered();
+
+    void on_actionModificar_Reserva_triggered();
 
 private:
     Ui::MainWindow *ui;
