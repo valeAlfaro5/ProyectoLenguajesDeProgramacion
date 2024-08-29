@@ -19,7 +19,7 @@ private slots:
     void on_buttonBox_2_accepted();
 
 private:
-    Ui::modifcarReserva   *ui;
+    Ui::modifcarReserva  *ui;
 };
 
 #endif // MODIFICAR_RESERVA_H

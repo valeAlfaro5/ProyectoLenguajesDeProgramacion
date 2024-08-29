@@ -4,6 +4,12 @@
 #include <QMainWindow>
 #include "nuevareserva.h"
 #include "modificar_reserva.h"
+#include "crearmesas.h"
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSql>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlDriver>
+#include <QtSql/QSqlQuery>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +25,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     NuevaReserva nuevaReserva;
+    CrearMesas crearMesa;
     ModificarReserva modificarReserva;
 
 private slots:
@@ -28,7 +35,10 @@ private slots:
 
     void on_actionModificar_Reserva_triggered();
 
+    void on_actionCrear_Mesa_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 };
 #endif // MAINWINDOW_H
