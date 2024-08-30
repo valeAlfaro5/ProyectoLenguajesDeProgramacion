@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "nuevareserva.h"
-#include "modificar_reserva.h"
+#include "buscarreservacion.h"
 #include "crearmesas.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSql>
@@ -26,7 +26,7 @@ public:
     ~MainWindow();
     NuevaReserva nuevaReserva;
     CrearMesas crearMesa;
-    ModificarReserva modificarReserva;
+    BuscarReservacion buscarReservacion;
 
 private slots:
     void on_actionSalir_2_triggered();

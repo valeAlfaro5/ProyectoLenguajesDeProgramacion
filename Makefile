@@ -52,22 +52,26 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = crearmesas.cpp \
+SOURCES       = buscarreservacion.cpp \
+		crearmesas.cpp \
 		login.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		modificar_reserva.cpp \
-		nuevareserva.cpp moc_crearmesas.cpp \
+		nuevareserva.cpp moc_buscarreservacion.cpp \
+		moc_crearmesas.cpp \
 		moc_login.cpp \
 		moc_mainwindow.cpp \
 		moc_modificar_reserva.cpp \
 		moc_nuevareserva.cpp
-OBJECTS       = crearmesas.o \
+OBJECTS       = buscarreservacion.o \
+		crearmesas.o \
 		login.o \
 		main.o \
 		mainwindow.o \
 		modificar_reserva.o \
 		nuevareserva.o \
+		moc_buscarreservacion.o \
 		moc_crearmesas.o \
 		moc_login.o \
 		moc_mainwindow.o \
@@ -303,11 +307,13 @@ DIST          = ../../../Qt/6.7.2/macos/mkspecs/features/spec_pre.prf \
 		../../../Qt/6.7.2/macos/mkspecs/features/exceptions.prf \
 		../../../Qt/6.7.2/macos/mkspecs/features/yacc.prf \
 		../../../Qt/6.7.2/macos/mkspecs/features/lex.prf \
-		proyecto.pro crearmesas.h \
+		proyecto.pro buscarreservacion.h \
+		crearmesas.h \
 		login.h \
 		mainwindow.h \
 		modificar_reserva.h \
-		nuevareserva.h crearmesas.cpp \
+		nuevareserva.h buscarreservacion.cpp \
+		crearmesas.cpp \
 		login.cpp \
 		main.cpp \
 		mainwindow.cpp \
@@ -333,7 +339,7 @@ include /Users/valeriaalfaro/Qt/6.7.2/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-proyecto.app/Contents/MacOS/proyecto: ui_crearmesas.h ui_login.h ui_mainwindow.h ui_modificar_reserva.h ui_nuevareserva.h $(OBJECTS)  
+proyecto.app/Contents/MacOS/proyecto: ui_buscarreservacion.h ui_crearmesas.h ui_login.h ui_mainwindow.h ui_modificar_reserva.h ui_nuevareserva.h $(OBJECTS)  
 	@test -d proyecto.app/Contents/MacOS/ || mkdir -p proyecto.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -832,9 +838,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents crearmesas.h login.h mainwindow.h modificar_reserva.h nuevareserva.h $(DISTDIR)/
-	$(COPY_FILE) --parents crearmesas.cpp login.cpp main.cpp mainwindow.cpp modificar_reserva.cpp nuevareserva.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents crearmesas.ui login.ui mainwindow.ui modificar_reserva.ui nuevareserva.ui $(DISTDIR)/
+	$(COPY_FILE) --parents buscarreservacion.h crearmesas.h login.h mainwindow.h modificar_reserva.h nuevareserva.h $(DISTDIR)/
+	$(COPY_FILE) --parents buscarreservacion.cpp crearmesas.cpp login.cpp main.cpp mainwindow.cpp modificar_reserva.cpp nuevareserva.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents buscarreservacion.ui crearmesas.ui login.ui mainwindow.ui modificar_reserva.ui nuevareserva.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -863,9 +869,16 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_crearmesas.cpp moc_login.cpp moc_mainwindow.cpp moc_modificar_reserva.cpp moc_nuevareserva.cpp
+compiler_moc_header_make_all: moc_buscarreservacion.cpp moc_crearmesas.cpp moc_login.cpp moc_mainwindow.cpp moc_modificar_reserva.cpp moc_nuevareserva.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_crearmesas.cpp moc_login.cpp moc_mainwindow.cpp moc_modificar_reserva.cpp moc_nuevareserva.cpp
+	-$(DEL_FILE) moc_buscarreservacion.cpp moc_crearmesas.cpp moc_login.cpp moc_mainwindow.cpp moc_modificar_reserva.cpp moc_nuevareserva.cpp
+moc_buscarreservacion.cpp: buscarreservacion.h \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		modificar_reserva.h \
+		../../../Qt/6.7.2/macos/libexec/moc
+	/Users/valeriaalfaro/Qt/6.7.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/valeriaalfaro/Qt/6.7.2/macos/mkspecs/macx-clang -I/Users/valeriaalfaro/Documents/GitHub/ProyectoLenguajesDeProgramacion -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtWidgets.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtGui.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtSql.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/valeriaalfaro/Qt/6.7.2/macos/lib buscarreservacion.h -o moc_buscarreservacion.cpp
+
 moc_crearmesas.cpp: crearmesas.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -879,7 +892,9 @@ moc_login.cpp: login.h \
 		nuevareserva.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		buscarreservacion.h \
 		modificar_reserva.h \
+		crearmesas.h \
 		../../../Qt/6.7.2/macos/libexec/moc
 	/Users/valeriaalfaro/Qt/6.7.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/valeriaalfaro/Qt/6.7.2/macos/mkspecs/macx-clang -I/Users/valeriaalfaro/Documents/GitHub/ProyectoLenguajesDeProgramacion -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtWidgets.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtGui.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtSql.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/valeriaalfaro/Qt/6.7.2/macos/lib login.h -o moc_login.cpp
 
@@ -889,7 +904,9 @@ moc_mainwindow.cpp: mainwindow.h \
 		nuevareserva.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		buscarreservacion.h \
 		modificar_reserva.h \
+		crearmesas.h \
 		../../../Qt/6.7.2/macos/libexec/moc
 	/Users/valeriaalfaro/Qt/6.7.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=15 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/valeriaalfaro/Qt/6.7.2/macos/mkspecs/macx-clang -I/Users/valeriaalfaro/Documents/GitHub/ProyectoLenguajesDeProgramacion -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtWidgets.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtGui.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtSql.framework/Headers -I/Users/valeriaalfaro/Qt/6.7.2/macos/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/valeriaalfaro/Qt/6.7.2/macos/lib mainwindow.h -o moc_mainwindow.cpp
 
@@ -909,9 +926,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_crearmesas.h ui_login.h ui_mainwindow.h ui_modificar_reserva.h ui_nuevareserva.h
+compiler_uic_make_all: ui_buscarreservacion.h ui_crearmesas.h ui_login.h ui_mainwindow.h ui_modificar_reserva.h ui_nuevareserva.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_crearmesas.h ui_login.h ui_mainwindow.h ui_modificar_reserva.h ui_nuevareserva.h
+	-$(DEL_FILE) ui_buscarreservacion.h ui_crearmesas.h ui_login.h ui_mainwindow.h ui_modificar_reserva.h ui_nuevareserva.h
+ui_buscarreservacion.h: buscarreservacion.ui \
+		../../../Qt/6.7.2/macos/libexec/uic
+	/Users/valeriaalfaro/Qt/6.7.2/macos/libexec/uic buscarreservacion.ui -o ui_buscarreservacion.h
+
 ui_crearmesas.h: crearmesas.ui \
 		../../../Qt/6.7.2/macos/libexec/uic
 	/Users/valeriaalfaro/Qt/6.7.2/macos/libexec/uic crearmesas.ui -o ui_crearmesas.h
@@ -944,10 +965,21 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
+buscarreservacion.o: buscarreservacion.cpp buscarreservacion.h \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		modificar_reserva.h \
+		ui_buscarreservacion.h \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o buscarreservacion.o buscarreservacion.cpp
+
 crearmesas.o: crearmesas.cpp crearmesas.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_crearmesas.h
+		ui_crearmesas.h \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o crearmesas.o crearmesas.cpp
 
 login.o: login.cpp login.h \
@@ -957,7 +989,9 @@ login.o: login.cpp login.h \
 		nuevareserva.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		buscarreservacion.h \
 		modificar_reserva.h \
+		crearmesas.h \
 		ui_login.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h
@@ -970,7 +1004,9 @@ main.o: main.cpp login.h \
 		nuevareserva.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		buscarreservacion.h \
 		modificar_reserva.h \
+		crearmesas.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QApplication \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -981,7 +1017,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		nuevareserva.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QDialog \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qdialog.h \
+		buscarreservacion.h \
 		modificar_reserva.h \
+		crearmesas.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
@@ -1000,6 +1038,9 @@ nuevareserva.o: nuevareserva.cpp nuevareserva.h \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/QMessageBox \
 		../../../Qt/6.7.2/macos/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nuevareserva.o nuevareserva.cpp
+
+moc_buscarreservacion.o: moc_buscarreservacion.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_buscarreservacion.o moc_buscarreservacion.cpp
 
 moc_crearmesas.o: moc_crearmesas.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_crearmesas.o moc_crearmesas.cpp

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>528</height>
+    <width>470</width>
+    <height>522</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@ background-color: rgb(228, 235, 156);</string>
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>270</y>
+     <y>220</y>
      <width>103</width>
      <height>32</height>
     </rect>
@@ -155,7 +155,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>209</y>
+     <y>159</y>
      <width>191</width>
      <height>31</height>
     </rect>
@@ -170,7 +170,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>220</y>
+     <y>170</y>
      <width>151</width>
      <height>16</height>
     </rect>
@@ -187,7 +187,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>280</y>
+     <y>230</y>
      <width>201</width>
      <height>16</height>
     </rect>
@@ -217,46 +217,11 @@ font: 700 24pt &quot;Georgia&quot;;</string>
     <string>MODIFICAR RESERVA</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="numeroTelefono_2">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>149</y>
-     <width>191</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;
-border-color: rgb(0, 0, 0);
-color: rgb(45, 81, 40);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>160</y>
-     <width>151</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;
-color: rgb(45, 81, 40);</string>
-   </property>
-   <property name="text">
-    <string>Numero de Reserva:</string>
-   </property>
-  </widget>
   <widget class="QComboBox" name="numeroComensales_2">
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>320</y>
+     <y>270</y>
      <width>103</width>
      <height>32</height>
     </rect>
@@ -390,7 +355,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>330</y>
+     <y>280</y>
      <width>201</width>
      <height>16</height>
     </rect>
@@ -407,7 +372,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>380</y>
+     <y>330</y>
      <width>201</width>
      <height>16</height>
     </rect>
@@ -424,7 +389,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>420</y>
+     <y>370</y>
      <width>201</width>
      <height>16</height>
     </rect>
@@ -441,7 +406,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>420</y>
+     <y>370</y>
      <width>118</width>
      <height>22</height>
     </rect>
@@ -455,7 +420,7 @@ color: rgb(45, 81, 40);</string>
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>380</y>
+     <y>330</y>
      <width>110</width>
      <height>22</height>
     </rect>
@@ -465,7 +430,7 @@ color: rgb(45, 81, 40);</string>
 color: rgb(45, 81, 40);</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="salirButton">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -483,11 +448,11 @@ color: rgb(45, 81, 40);
     <string>SALIR</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="modificarButton">
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>470</y>
+     <y>420</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -501,11 +466,11 @@ color: rgb(45, 81, 40);
     <string>MODIFICAR</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="cancelarButton">
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>470</y>
+     <y>420</y>
      <width>100</width>
      <height>32</height>
     </rect>

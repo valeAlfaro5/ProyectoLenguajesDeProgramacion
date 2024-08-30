@@ -57,7 +57,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(842, 614);
+        MainWindow->resize(842, 756);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(83, 123, 47);"));
         actionSalir = new QAction(MainWindow);
         actionSalir->setObjectName("actionSalir");
@@ -81,24 +81,24 @@ public:
         widget->setObjectName("widget");
         calendarWidget = new QCalendarWidget(widget);
         calendarWidget->setObjectName("calendarWidget");
-        calendarWidget->setGeometry(QRect(0, 140, 371, 271));
+        calendarWidget->setGeometry(QRect(210, 60, 371, 271));
         calendarWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);"));
         label = new QLabel(widget);
         label->setObjectName("label");
-        label->setGeometry(QRect(290, 40, 221, 41));
+        label->setGeometry(QRect(290, 10, 221, 41));
         label->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "font: 700 24pt \"Georgia\";"));
         tabWidget = new QTabWidget(widget);
         tabWidget->setObjectName("tabWidget");
-        tabWidget->setGeometry(QRect(390, 130, 411, 321));
+        tabWidget->setGeometry(QRect(50, 360, 721, 321));
         tab = new QWidget();
         tab->setObjectName("tab");
         listWidget = new QListWidget(tab);
         new QListWidgetItem(listWidget);
         new QListWidgetItem(listWidget);
         listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(15, 10, 311, 241));
+        listWidget->setGeometry(QRect(200, 10, 311, 241));
         listWidget->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
 "color:rgb(255, 255, 255)"));
         tabWidget->addTab(tab, QString());
@@ -116,7 +116,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(10, 10, 381, 261));
+        tableWidget->setGeometry(QRect(160, 10, 411, 261));
         tableWidget->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "font: 700 14pt \"Georgia\";"));
         tabWidget->addTab(tab_2, QString());

@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    buscarreservacion.cpp \
     crearmesas.cpp \
     login.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     nuevareserva.cpp
 
 HEADERS += \
+    buscarreservacion.h \
     crearmesas.h \
     login.h \
     mainwindow.h \
@@ -24,6 +26,7 @@ HEADERS += \
     nuevareserva.h
 
 FORMS += \
+    buscarreservacion.ui \
     crearmesas.ui \
     login.ui \
     mainwindow.ui \

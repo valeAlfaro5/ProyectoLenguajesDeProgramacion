@@ -40,7 +40,7 @@ void MainWindow::on_actionNueva_Reserva_2_triggered()
 
 void MainWindow::on_actionModificar_Reserva_triggered()
 {
-    modificarReserva.setVisible(true);
+    buscarReservacion.setVisible(true);
 }
 
 

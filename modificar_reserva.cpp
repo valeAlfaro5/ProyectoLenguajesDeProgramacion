@@ -15,7 +15,16 @@ ModificarReserva::~ModificarReserva()
     delete ui;
 }
 
-void ModificarReserva::on_buttonBox_2_accepted()
+void ModificarReserva::llenarInformacion(int numeroReserva)
+{
+    if(numeroReserva!= 0 ){
+
+    }else{
+        QMessageBox::information(this, "ERROR!", "No existe una reserva con ese numero!");
+    }
+}
+
+void ModificarReserva::on_salirButton_clicked()
 {
 
 }

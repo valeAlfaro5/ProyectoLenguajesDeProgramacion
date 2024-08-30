@@ -36,7 +36,7 @@ namespace {
 struct qt_meta_stringdata_CLASSModificarReservaENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSModificarReservaENDCLASS = QtMocHelpers::stringData(
     "ModificarReserva",
-    "on_buttonBox_2_accepted",
+    "on_salirButton_clicked",
     ""
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -75,7 +75,7 @@ Q_CONSTINIT const QMetaObject ModificarReserva::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSModificarReservaENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<ModificarReserva, std::true_type>,
-        // method 'on_buttonBox_2_accepted'
+        // method 'on_salirButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -87,7 +87,7 @@ void ModificarReserva::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         auto *_t = static_cast<ModificarReserva *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_buttonBox_2_accepted(); break;
+        case 0: _t->on_salirButton_clicked(); break;
         default: ;
         }
     }

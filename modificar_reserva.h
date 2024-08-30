@@ -14,9 +14,11 @@ class ModificarReserva : public QDialog
 public:
     explicit ModificarReserva(QWidget *parent = nullptr);
     ~ModificarReserva();
+    void llenarInformacion(int numeroReserva);
 
 private slots:
-    void on_buttonBox_2_accepted();
+
+    void on_salirButton_clicked();
 
 private:
     Ui::modifcarReserva  *ui;
