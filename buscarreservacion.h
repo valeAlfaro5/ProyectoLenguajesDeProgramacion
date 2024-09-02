@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "modificar_reserva.h"
+#include "databasemanager.h"
 
 namespace Ui {
 class buscarReservacion;
@@ -16,6 +17,8 @@ public:
     explicit BuscarReservacion(QWidget *parent = nullptr);
     ~BuscarReservacion();
     ModificarReserva modificarReserva;
+    QSqlDatabase& db;
+    bool reservaIDExiste(int reservaID);
 
 private slots:
     void on_buttonBox_accepted();

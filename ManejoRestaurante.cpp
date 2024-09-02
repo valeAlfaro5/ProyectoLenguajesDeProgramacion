@@ -7,7 +7,7 @@
 using namespace std;
 
 ManejoRestaurante::ManejoRestaurante(QObject *parent) : QObject(parent), db(DatabaseManager::instance().getDatabase()) {
-    // Initialize the database connection
+
     /*
     db.setHostName("db4free.net");
     db.setPort(3306);
@@ -97,38 +97,37 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
     QDateTime reservationDateTime(fecha, hora);
 
     if (reservationDateTime <= currentDateTime) {
-        qDebug() << "Error: Cannot make a reservation for a date and time that has already passed.";
+        qDebug() << "Error: Ese tiempo ya paso.";
         return false;
     }
 
-    // Check if the time is within operating hours
+
+//El restaurante opera de 1pm a 9pm
     if (hora < QTime(13, 0) || hora >= QTime(21, 0)) {
-        qDebug() << "Error: Reservation time is outside operating hours.";
+        qDebug() << "Error: Fuera de las horas del restaurante.";
         return false;
     }
 
-    // Check if the client exists, or add them
     int clienteID;
     if (!clienteExiste(telefono, clienteID)) {
         if (!agregarCliente(nombre, telefono, clienteID)) {
-            qDebug() << "Error: Could not add new client.";
+            qDebug() << "Error: No se pudo agregar al cliente.";
             return false;
         }
     }
 
-    // Check if the table is available at the specified time
     if (!verificarDisponibilidad(mesaID, fecha, hora)) {
-        qDebug() << "Error: Table is not available at the specified time.";
+        qDebug() << "Hubo un error.";
         return false;
     }
 
-    // Check if the client has more than one reservation on the same day or more than three reservations in total
+    // Un cliente puede tener una reservacion por dia y un maximo de3 reservaciones
     if (contarReservasPorCliente(clienteID, fecha) >= 1 || contarReservasPorCliente(clienteID, QDate()) >= 3) {
-        qDebug() << "Error: Client has exceeded reservation limits.";
+        qDebug() << "Error: El cliente se ha excedido de sus reservas maximas.";
         return false;
     }
 
-    // Insert the reservation
+
     QSqlQuery query;
     query.prepare("INSERT INTO Reservaciones (clienteID, mesaID, cantidadPersonas, fecha, hora) "
                   "VALUES (:clienteID, :mesaID, :cantidadPersonas, :fecha, :hora)");
@@ -150,7 +149,7 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
         reservaciones.append(res);
         return true;
     } else {
-        qDebug() << "Error: Could not add reservation -" << query.lastError().text();
+        qDebug() << "Error: " << query.lastError().text();
         return false;
     }
 }
@@ -161,7 +160,7 @@ void ManejoRestaurante::llenarComboBoxMesasDisponibles(QDateEdit* fechaEdit, QTi
     QDate fecha = fechaEdit->date();
     QTime hora = horaEdit->time();
 
-    // Query to get all the mesaIDs
+
     QSqlQuery mesaQuery("SELECT mesaID FROM Mesa");
     QList<int> allMesas;
 
@@ -169,7 +168,6 @@ void ManejoRestaurante::llenarComboBoxMesasDisponibles(QDateEdit* fechaEdit, QTi
         allMesas.append(mesaQuery.value(0).toInt());
     }
 
-    // Check the availability of each mesa
     for (int mesaID : allMesas) {
         if (verificarDisponibilidad(mesaID, fecha, hora)) {
             comboBox->addItem(QString::number(mesaID));
@@ -180,7 +178,7 @@ void ManejoRestaurante::llenarComboBoxMesasDisponibles(QDateEdit* fechaEdit, QTi
 void ManejoRestaurante::llenarComboBoxCapacidadMesa(int mesaID, QComboBox* comboBox) {
     comboBox->clear();
 
-    // Query to get the size of the mesa
+
     QSqlQuery query;
     query.prepare("SELECT tamanio FROM Mesa WHERE mesaID = :mesaID");
     query.bindValue(":mesaID", mesaID);
@@ -199,11 +197,10 @@ void ManejoRestaurante::llenarComboBoxCapacidadMesa(int mesaID, QComboBox* combo
             maxCapacidad = 8;
         }
 
-        // Populate the comboBox with numbers from 1 to maxCapacidad
         for (int i = 1; i <= maxCapacidad; ++i) {
             comboBox->addItem(QString::number(i));
         }
     } else {
-        qDebug() << "Error: Could not retrieve table size -" << query.lastError().text();
+        qDebug() << "Error: " << query.lastError().text();
     }
 }
