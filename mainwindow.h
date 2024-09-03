@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "nuevareserva.h"
+#include "buscarreservacion.h"
+#include "crearmesas.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSql>
 #include <QtSql/QSqlError>
@@ -21,6 +24,18 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    NuevaReserva nuevaReserva;
+    CrearMesas crearMesa;
+    BuscarReservacion buscarReservacion;
+
+private slots:
+    void on_actionSalir_2_triggered();
+
+    void on_actionNueva_Reserva_2_triggered();
+
+    void on_actionModificar_Reserva_triggered();
+
+    void on_actionCrear_Mesa_triggered();
 
 private:
     Ui::MainWindow *ui;
