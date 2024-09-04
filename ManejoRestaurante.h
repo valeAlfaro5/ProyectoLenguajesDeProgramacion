@@ -14,14 +14,6 @@
 #include <QTimeEdit>
 #include <databasemanager.h>
 
-struct Reservacion {
-    int reservaID;
-    int clienteID;
-    int mesaID;
-    int cantidadPersonas;
-    QDate fecha;
-    QTime hora;
-};
 
 class ManejoRestaurante : public QObject {
     Q_OBJECT

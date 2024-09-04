@@ -1,4 +1,5 @@
 #include "modificar_reserva.h"
+#include "ManejoRestaurante.h"
 #include "ui_modificar_reserva.h"
 #include <QMessageBox>
 
@@ -84,6 +85,27 @@ bool ModificarReserva::modificarReservacion(int reservaID, QDate cambioFecha, QT
         return false;
     }
 }
+
+bool ModificarReserva::cancelarReservacion(int reservaID)
+{
+    auto& reservaciones = DatabaseManager::instance().reservaciones;
+
+    for (auto& reservacion : reservaciones) {
+        if (reservacion.reservaID == reservaID) {
+            reservacion.activo = false;
+            qDebug() << "Reservation ID" << reservaID << "cancelled.";
+            break;
+        }
+    }
+
+    QSqlQuery query;
+    query.prepare("UPDATE Reservaciones SET activo = false WHERE reservaID = :reservaID");
+    query.bindValue(":reservaID", reservaID);
+    query.exec();
+}
+
+
+
 
 
 void ModificarReserva::on_salirButton_clicked()

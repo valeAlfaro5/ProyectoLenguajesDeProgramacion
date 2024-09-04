@@ -5,6 +5,8 @@
 #include "nuevareserva.h"
 #include "buscarreservacion.h"
 #include "crearmesas.h"
+#include "form.h"
+#include "crearmesas3.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSql>
 #include <QtSql/QSqlError>
@@ -27,6 +29,10 @@ public:
     NuevaReserva nuevaReserva;
     CrearMesas crearMesa;
     BuscarReservacion buscarReservacion;
+    Form formito;
+    //crearmesas2 creacionMesas;
+    crearmesas3 creacionMesa;
+
 
 private slots:
     void on_actionSalir_2_triggered();

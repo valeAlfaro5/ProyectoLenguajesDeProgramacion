@@ -20,6 +20,8 @@ public:
     bool modificarReservacion(int reservaID, QDate cambioFecha, QTime cambioHora);
     QSqlDatabase& db;
     int reservaId;
+    bool cancelarReservacion(int reservaID);
+
 
 
 private slots:

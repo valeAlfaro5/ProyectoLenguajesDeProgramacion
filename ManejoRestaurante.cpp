@@ -38,6 +38,7 @@ bool ManejoRestaurante::cargarReservaciones() {
         res.cantidadPersonas = query.value("cantidadPersonas").toInt();
         res.fecha = query.value("fecha").toDate();
         res.hora = query.value("hora").toTime();
+        res.activo = query.value("activo").toBool();
 
         reservaciones.append(res);
     }
@@ -70,23 +71,60 @@ bool ManejoRestaurante::agregarCliente(const QString& nombre, const QString& tel
     return false;
 }
 
+//Verifica si hay una reservacion en esa fecha
 bool ManejoRestaurante::verificarDisponibilidad(int mesaID, const QDate& fecha, const QTime& hora) {
+
+    QSqlQuery query;
+
+    query.prepare("SELECT COUNT(*) FROM Reservaciones WHERE mesaID = :mesaID AND fecha = :fecha AND hora = :hora AND activo = true");
+    query.bindValue(":mesaID", mesaID);
+    query.bindValue(":fecha", fecha);
+    query.bindValue(":hora", hora);
+
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        return count == 0;
+    } else {
+        qDebug() << "Error: Could not verify mesa availability -" << query.lastError().text();
+        return false; // Assuming false if the query fails, but you could handle this differently
+    }
+    /*
     for (const Reservacion& res : reservaciones) {
-        if (res.mesaID == mesaID && res.fecha == fecha && res.hora == hora) {
+        if (res.mesaID == mesaID && res.fecha == fecha && res.hora == hora && res.activo == true) {
             return false;
         }
     }
     return true;
+    */
 }
 
 int ManejoRestaurante::contarReservasPorCliente(int clienteID, const QDate& fecha) {
+
+    QSqlQuery query;
+
+    query.prepare("SELECT COUNT(*) FROM Reservaciones WHERE clienteID = :clienteID AND fecha = :fecha AND activo = true");
+    query.bindValue(":clienteID", clienteID);
+    query.bindValue(":fecha", fecha);
+
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        std::cout << std::endl << count << std::endl;
+        return count;
+    } else {
+        qDebug() << "Error: Could not count reservations for client -" << query.lastError().text();
+        return 0; // Assuming 0 if the query fails, but you could handle this differently
+    }
+
+    /*
     int count = 0;
     for (const Reservacion& res : reservaciones) {
-        if (res.clienteID == clienteID && res.fecha == fecha) {
+        if (res.clienteID == clienteID && res.fecha == fecha && res.activo == true) {
             count++;
         }
     }
+    std:: cout << endl << count << endl;
     return count;
+    */
 }
 
 bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString& telefono, int mesaID, int cantidadPersonas, QDateEdit* fechaEdit, QTimeEdit* horaEdit) {
@@ -108,6 +146,21 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
         return false;
     }
 
+    QSqlQuery query;
+
+    query.prepare("SELECT activa FROM Mesa WHERE mesaID = :mesaID");
+    query.bindValue(":mesaID", mesaID);
+    if (!query.exec() || !query.next()) {
+        qDebug() << "Error: " << query.lastError().text();
+        return false;
+    }
+
+    bool mesaActiva = query.value(0).toBool();
+    if (!mesaActiva) {
+        qDebug() << "Error: Mesa no esta activa";
+        return false;
+    }
+
     int clienteID;
     if (!clienteExiste(telefono, clienteID)) {
         if (!agregarCliente(nombre, telefono, clienteID)) {
@@ -121,21 +174,22 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
         return false;
     }
 
-    // Un cliente puede tener una reservacion por dia y un maximo de3 reservaciones
+    // Un cliente puede tener una reservacion por dia o un maximo de3 reservaciones
     if (contarReservasPorCliente(clienteID, fecha) >= 1 || contarReservasPorCliente(clienteID, QDate()) >= 3) {
         qDebug() << "Error: El cliente se ha excedido de sus reservas maximas.";
         return false;
     }
 
 
-    QSqlQuery query;
-    query.prepare("INSERT INTO Reservaciones (clienteID, mesaID, cantidadPersonas, fecha, hora) "
-                  "VALUES (:clienteID, :mesaID, :cantidadPersonas, :fecha, :hora)");
+
+    query.prepare("INSERT INTO Reservaciones (clienteID, mesaID, cantidadPersonas, fecha, hora, activo) "
+                  "VALUES (:clienteID, :mesaID, :cantidadPersonas, :fecha, :hora, :activo)");
     query.bindValue(":clienteID", clienteID);
     query.bindValue(":mesaID", mesaID);
     query.bindValue(":cantidadPersonas", cantidadPersonas);
     query.bindValue(":fecha", fecha);
     query.bindValue(":hora", hora);
+    query.bindValue(":activo", true);
 
     if (query.exec()) {
         Reservacion res;
@@ -161,7 +215,7 @@ void ManejoRestaurante::llenarComboBoxMesasDisponibles(QDateEdit* fechaEdit, QTi
     QTime hora = horaEdit->time();
 
 
-    QSqlQuery mesaQuery("SELECT mesaID FROM Mesa");
+    QSqlQuery mesaQuery("SELECT mesaID FROM Mesa WHERE activa = true");
     QList<int> allMesas;
 
     while (mesaQuery.next()) {

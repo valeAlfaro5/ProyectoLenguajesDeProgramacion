@@ -14,6 +14,8 @@ DatabaseManager::DatabaseManager() {
     } else {
         qDebug() << "Error: " << db.lastError().text();
     }
+
+    cargarReservaciones();
 }
 
 DatabaseManager::~DatabaseManager() {
@@ -31,3 +33,18 @@ QSqlDatabase& DatabaseManager::getDatabase() {
     return db;
 }
 
+void DatabaseManager::cargarReservaciones() {
+    QSqlQuery query("SELECT reservaID, clienteID, mesaID, cantidadPersonas, fecha, hora, activo FROM Reservaciones");
+    while (query.next()) {
+        Reservacion reservacion;
+        reservacion.reservaID = query.value(0).toInt();
+        reservacion.clienteID = query.value(1).toInt();
+        reservacion.mesaID = query.value(2).toInt();
+        reservacion.cantidadPersonas = query.value(3).toInt();
+        reservacion.fecha = query.value(4).toDate();
+        reservacion.hora = query.value(5).toTime();
+        reservacion.activo = query.value(6).toBool();
+
+        reservaciones.append(reservacion);
+    }
+}

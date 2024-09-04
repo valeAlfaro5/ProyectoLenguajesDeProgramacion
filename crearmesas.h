@@ -2,6 +2,7 @@
 #define CREARMESAS_H
 
 #include <QDialog>
+#include <databasemanager.h>
 
 
 namespace Ui {
@@ -15,6 +16,10 @@ class CrearMesas : public QDialog
 public:
     explicit CrearMesas(QWidget *parent = nullptr);
     ~CrearMesas();
+    bool crearMesa(int mesaID, int tamanio);
+    bool activarMesa(int mesaID);
+    bool desactivarMesa(int mesaID);
+    QSqlDatabase& db;
 
 private slots:
     void on_buttonBox_accepted();

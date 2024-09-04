@@ -23,7 +23,7 @@ void MainWindow::on_actionSalir_2_triggered()
 
 void MainWindow::on_actionNueva_Reserva_2_triggered()
 {
-    nuevaReserva.setVisible(true);
+    formito.setVisible(true);
 }
 
 
@@ -35,6 +35,8 @@ void MainWindow::on_actionModificar_Reserva_triggered()
 
 void MainWindow::on_actionCrear_Mesa_triggered()
 {
-    crearMesa.setVisible(true);
+    //crearMesa.setVisible(true);
+    creacionMesa.setVisible(true);
+
 }
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>455</width>
+    <width>474</width>
     <height>296</height>
    </rect>
   </property>
@@ -31,11 +31,8 @@ background-color: rgb(228, 235, 156);</string>
 color: rgb(45, 81, 40);
 </string>
    </property>
-   <property name="orientation">
-    <enum>Qt::Orientation::Vertical</enum>
-   </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+    <set>QDialogButtonBox::NoButton</set>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -43,7 +40,7 @@ color: rgb(45, 81, 40);
     <rect>
      <x>150</x>
      <y>20</y>
-     <width>211</width>
+     <width>271</width>
      <height>61</height>
     </rect>
    </property>

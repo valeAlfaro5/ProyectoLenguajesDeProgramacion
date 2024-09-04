@@ -12,6 +12,7 @@ SOURCES += \
     ManejoRestaurante.cpp \
     buscarreservacion.cpp \
     crearmesas.cpp \
+    crearmesas3.cpp \
     databasemanager.cpp \
     form.cpp \
     login.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     ManejoRestaurante.h \
     buscarreservacion.h \
     crearmesas.h \
+    crearmesas3.h \
     databasemanager.h \
     form.h \
     login.h \
@@ -35,6 +37,7 @@ HEADERS += \
 FORMS += \
     buscarreservacion.ui \
     crearmesas.ui \
+    crearmesas3.ui \
     form.ui \
     login.ui \
     mainwindow.ui \

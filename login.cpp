@@ -36,14 +36,14 @@ void Login::on_loginButton_clicked()
 
     if(validarCliente(ui->nombreCliente->text().toInt(), ui->password->text())){
 
-        QMessageBox::information(this, "EXITO!", "Ha ingresado con exito al Restaurante!");
+        //QMessageBox::information(this, "EXITO!", "Ha ingresado con exito al Restaurante!");
         main.show();
         //formito.show();
         this->setVisible(false);
 
     }else{
 
-        QMessageBox::information(this, "ERROR!", "El nombre del Cliente o la contraseña estan vacios.\nAsegurese de llenar todos los campos.");
+        QMessageBox::information(this, "ERROR!", "ClienteID y/o telefono incorrecto.");
     }
 
     /*
