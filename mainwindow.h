@@ -45,5 +45,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 };
 #endif // MAINWINDOW_H
