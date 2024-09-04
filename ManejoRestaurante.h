@@ -36,6 +36,11 @@ private:
     bool agregarCliente(const QString& nombre, const QString& telefono, int &clienteID);
     bool verificarDisponibilidad(int mesaID, const QDate& fecha, const QTime& hora);
     int contarReservasPorCliente(int clienteID, const QDate& fecha);
+    bool clienteTieneReservaActiva(const QString& telefono, const QDate& fecha);
+    int contarReservasActivasPorCliente(const QString& telefono);
+    int obtenerClienteIDPorTelefono(const QString& telefono);
+
+
 };
 
 #endif // MANEJORESTAURANTE_H

@@ -90,18 +90,34 @@ bool ModificarReserva::cancelarReservacion(int reservaID)
 {
     auto& reservaciones = DatabaseManager::instance().reservaciones;
 
-    for (auto& reservacion : reservaciones) {
-        if (reservacion.reservaID == reservaID) {
-            reservacion.activo = false;
-            qDebug() << "Reservation ID" << reservaID << "cancelled.";
-            break;
-        }
+    /*
+    if (!reservaIDExiste(reservaID)) {
+        qDebug() << "Error: Reservation ID does not exist.";
+        return false;
     }
+    */
 
+    //cambio a falso
     QSqlQuery query;
     query.prepare("UPDATE Reservaciones SET activo = false WHERE reservaID = :reservaID");
     query.bindValue(":reservaID", reservaID);
-    query.exec();
+
+    if (query.exec()) {
+        qDebug() << "Reservation cancelada.";
+
+
+        for (int i = 0; i < reservaciones.size(); ++i) {
+            if (reservaciones[i].reservaID == reservaID) {
+                reservaciones[i].activo = false;
+                break;
+            }
+        }
+
+        return true;
+    } else {
+        qDebug() << "Error: " << query.lastError().text();
+        return false;
+    }
 }
 
 
@@ -124,6 +140,20 @@ void ModificarReserva::on_modificarButton_clicked()
 
     }else{
         QMessageBox::information(this, "ERROR", "No se pudo modificar.");
+    }
+}
+
+
+void ModificarReserva::on_cancelarButton_clicked()
+{
+    if(cancelarReservacion(reservaId)){
+
+        QMessageBox::information(this, "EXITO", "Reservacion Cancelada.");
+
+    }else{
+
+        QMessageBox::critical(this, "CHIVA!", "La reservacion no pudo ser cancelada.");
+
     }
 }
 

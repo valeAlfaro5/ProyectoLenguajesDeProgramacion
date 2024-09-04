@@ -127,6 +127,67 @@ int ManejoRestaurante::contarReservasPorCliente(int clienteID, const QDate& fech
     */
 }
 
+int ManejoRestaurante::contarReservasActivasPorCliente(const QString& telefono) {
+    QSqlQuery query;
+
+
+    int clienteID = obtenerClienteIDPorTelefono(telefono);
+
+    // Contar todas las reservaciones activas de un cliente
+    query.prepare("SELECT COUNT(*) FROM Reservaciones WHERE clienteID = :clienteID AND activo = true");
+    query.bindValue(":clienteID", clienteID);
+
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        return count;
+    } else {
+        qDebug() << "Error: " << clienteID << "-" << query.lastError().text();
+        return -1;
+    }
+}
+
+int ManejoRestaurante::obtenerClienteIDPorTelefono(const QString &telefono)
+{
+    QSqlQuery query;
+
+    //Obtener ClienteID
+    query.prepare("SELECT clienteID FROM Cliente WHERE telefono = :telefono");
+    query.bindValue(":telefono", telefono);
+
+    if (!query.exec() || !query.next()) {
+        qDebug() << "Error: Cliente no encontrado del telefono " << telefono << " no encontrado." << query.lastError().text();
+        return -1;
+    }
+
+    int clienteID = query.value(0).toInt();
+    return clienteID;
+}
+
+bool ManejoRestaurante::clienteTieneReservaActiva(const QString& telefono, const QDate& fecha) {
+    QSqlQuery query;
+
+
+    int clienteID = obtenerClienteIDPorTelefono(telefono);
+
+    if(clienteID == -1){
+        qDebug() << "Error: Fallo con encontrar cliente o no existe";
+        return false;
+    }
+
+    // Checquear si el cliente tiene una reservacion activa en la fecha especifica
+    query.prepare("SELECT COUNT(*) FROM Reservaciones WHERE clienteID = :clienteID AND fecha = :fecha AND activo = true");
+    query.bindValue(":clienteID", clienteID);
+    query.bindValue(":fecha", fecha);
+
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        return count > 0;
+    } else {
+        qDebug() << "Error: No se pudo chequear " << clienteID << "en la fecha " << fecha << "-" << query.lastError().text();
+        return false;
+    }
+}
+
 bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString& telefono, int mesaID, int cantidadPersonas, QDateEdit* fechaEdit, QTimeEdit* horaEdit) {
     QDate fecha = fechaEdit->date();
     QTime hora = horaEdit->time();
@@ -140,7 +201,7 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
     }
 
 
-//El restaurante opera de 1pm a 9pm
+    //El restaurante opera de 1pm a 9pm
     if (hora < QTime(13, 0) || hora >= QTime(21, 0)) {
         qDebug() << "Error: Fuera de las horas del restaurante.";
         return false;
@@ -174,11 +235,25 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
         return false;
     }
 
+    //Un cliente solo puede tener una reserva activa por dia
+    if(clienteTieneReservaActiva(telefono, fecha) == true){
+        qDebug() << "Tiene reserva activa en la fecha.";
+        return false;
+    }
+
+    //Maximo 3 reservas activas por cliente
+    if(contarReservasActivasPorCliente(telefono) >= 3){
+        qDebug() << "Alcanzo su limite de reservaciones.";
+        return false;
+    }
+
+    /*
     // Un cliente puede tener una reservacion por dia o un maximo de3 reservaciones
     if (contarReservasPorCliente(clienteID, fecha) >= 1 || contarReservasPorCliente(clienteID, QDate()) >= 3) {
         qDebug() << "Error: El cliente se ha excedido de sus reservas maximas.";
         return false;
     }
+    */
 
 
 

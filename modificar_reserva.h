@@ -31,6 +31,8 @@ private slots:
 
     void on_modificarButton_clicked();
 
+    void on_cancelarButton_clicked();
+
 private:
     Ui::modifcarReserva  *ui;
 };
