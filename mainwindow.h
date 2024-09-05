@@ -12,6 +12,8 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlDriver>
 #include <QtSql/QSqlQuery>
+#include <QTableWidget>
+#include "databasemanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,6 +32,8 @@ public:
     CrearMesas crearMesa;
     BuscarReservacion buscarReservacion;
     Form formito;
+    void llenarTablaReservaciones(QTableWidget *tableWidget);
+
     //crearmesas2 creacionMesas;
     crearmesas3 creacionMesa;
 

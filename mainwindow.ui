@@ -55,9 +55,9 @@ font: 700 24pt &quot;Georgia&quot;;</string>
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>360</y>
+         <y>350</y>
          <width>721</width>
-         <height>321</height>
+         <height>341</height>
         </rect>
        </property>
        <property name="currentIndex">
@@ -99,9 +99,9 @@ color:rgb(255, 255, 255)</string>
         <widget class="QTableWidget" name="tableWidget">
          <property name="geometry">
           <rect>
-           <x>160</x>
+           <x>30</x>
            <y>10</y>
-           <width>411</width>
+           <width>661</width>
            <height>261</height>
           </rect>
          </property>
