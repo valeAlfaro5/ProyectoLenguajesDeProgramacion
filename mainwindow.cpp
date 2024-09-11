@@ -117,3 +117,9 @@ void MainWindow::on_actionCrear_Mesa_triggered()
 
 }
 
+
+void MainWindow::on_actionModificar_Mesa_triggered()
+{
+    manejoMesas.setVisible(true);
+}
+

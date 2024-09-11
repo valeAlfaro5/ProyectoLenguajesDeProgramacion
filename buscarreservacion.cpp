@@ -34,6 +34,10 @@ bool BuscarReservacion::reservaIDExiste(int reservaID)
 void BuscarReservacion::on_buttonBox_accepted()
 {
 
+     if (ui->numeroReserva->text().isEmpty()){
+          QMessageBox::critical(this, "ERROR", "No ha ingresado ningun numero.");
+     }
+
     if(reservaIDExiste(ui->numeroReserva->text().toInt())){
         modificarReserva.reservaId = ui->numeroReserva->text().toInt();
         ui->numeroReserva->clear();

@@ -45,16 +45,15 @@ public:
         if (NuevaReserva->objectName().isEmpty())
             NuevaReserva->setObjectName("NuevaReserva");
         NuevaReserva->resize(470, 489);
-        NuevaReserva->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(228, 235, 156);"));
+        NuevaReserva->setStyleSheet(QString::fromUtf8("background-color: rgb(237, 232, 208);\n"
+""));
         buttonBox = new QDialogButtonBox(NuevaReserva);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(-30, 440, 341, 32));
         buttonBox->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
 "background-color: rgb(45, 81, 40);\n"
 ""));
-        buttonBox->setOrientation(Qt::Orientation::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
+        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::NoButton);
         nombreCliente = new QLineEdit(NuevaReserva);
         nombreCliente->setObjectName("nombreCliente");
         nombreCliente->setGeometry(QRect(220, 110, 191, 31));

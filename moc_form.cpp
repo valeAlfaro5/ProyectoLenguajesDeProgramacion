@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'mainwindow.h'
+** Meta object code from reading C++ file 'form.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "mainwindow.h"
+#include "form.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -16,7 +16,7 @@
 
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'mainwindow.h' doesn't include <QObject>."
+#error "The header file 'form.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.7.2. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -33,22 +33,23 @@ QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
-struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {};
-constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::stringData(
-    "MainWindow",
-    "on_actionSalir_2_triggered",
+struct qt_meta_stringdata_CLASSFormENDCLASS_t {};
+constexpr auto qt_meta_stringdata_CLASSFormENDCLASS = QtMocHelpers::stringData(
+    "Form",
+    "on_buttonBox_accepted",
     "",
-    "on_actionNueva_Reserva_2_triggered",
-    "on_actionModificar_Reserva_triggered",
-    "on_actionCrear_Mesa_triggered",
-    "on_actionModificar_Mesa_triggered"
+    "on_buttonBox_rejected",
+    "on_pushButton_clicked",
+    "on_mesasDisponibles_activated",
+    "index",
+    "on_pushButton_2_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
 #endif // !QT_MOC_HAS_STRINGDATA
 } // unnamed namespace
 
-Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
+Q_CONSTINIT static const uint qt_meta_data_CLASSFormENDCLASS[] = {
 
  // content:
       12,       // revision
@@ -65,75 +66,75 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        1,    0,   44,    2, 0x08,    1 /* Private */,
        3,    0,   45,    2, 0x08,    2 /* Private */,
        4,    0,   46,    2, 0x08,    3 /* Private */,
-       5,    0,   47,    2, 0x08,    4 /* Private */,
-       6,    0,   48,    2, 0x08,    5 /* Private */,
+       5,    1,   47,    2, 0x08,    4 /* Private */,
+       7,    0,   50,    2, 0x08,    6 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void,
 
        0        // eod
 };
 
-Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
-    QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
-    qt_meta_stringdata_CLASSMainWindowENDCLASS.offsetsAndSizes,
-    qt_meta_data_CLASSMainWindowENDCLASS,
+Q_CONSTINIT const QMetaObject Form::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_CLASSFormENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSFormENDCLASS,
     qt_static_metacall,
     nullptr,
-    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSMainWindowENDCLASS_t,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSFormENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'on_actionSalir_2_triggered'
+        QtPrivate::TypeAndForceComplete<Form, std::true_type>,
+        // method 'on_buttonBox_accepted'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionNueva_Reserva_2_triggered'
+        // method 'on_buttonBox_rejected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionModificar_Reserva_triggered'
+        // method 'on_pushButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionCrear_Mesa_triggered'
+        // method 'on_mesasDisponibles_activated'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionModificar_Mesa_triggered'
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_pushButton_2_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
 
-void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void Form::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<MainWindow *>(_o);
+        auto *_t = static_cast<Form *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_actionSalir_2_triggered(); break;
-        case 1: _t->on_actionNueva_Reserva_2_triggered(); break;
-        case 2: _t->on_actionModificar_Reserva_triggered(); break;
-        case 3: _t->on_actionCrear_Mesa_triggered(); break;
-        case 4: _t->on_actionModificar_Mesa_triggered(); break;
+        case 0: _t->on_buttonBox_accepted(); break;
+        case 1: _t->on_buttonBox_rejected(); break;
+        case 2: _t->on_pushButton_clicked(); break;
+        case 3: _t->on_mesasDisponibles_activated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 4: _t->on_pushButton_2_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
-const QMetaObject *MainWindow::metaObject() const
+const QMetaObject *Form::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *MainWindow::qt_metacast(const char *_clname)
+void *Form::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_CLASSMainWindowENDCLASS.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSFormENDCLASS.stringdata0))
         return static_cast<void*>(this);
-    return QMainWindow::qt_metacast(_clname);
+    return QWidget::qt_metacast(_clname);
 }
 
-int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int Form::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QMainWindow::qt_metacall(_c, _id, _a);
+    _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
