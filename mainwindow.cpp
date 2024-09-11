@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     llenarTablaReservaciones(ui->tableWidget);
+
+
     /*
 
     db.setHostName("db4free.net");
