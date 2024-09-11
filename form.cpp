@@ -49,6 +49,7 @@ void Form::on_pushButton_2_clicked()
 {
     if(hola.agregarReservacion(ui->nombreCliente->text(),ui->numeroTelefono->text(), ui->mesasDisponibles->currentText().toInt(), ui->numeroComensales->currentText().toInt(), ui->dateEdit, ui->timeEdit)){
         QMessageBox::information(this, "EXITO!", "Reserva creada con exito!");
+        this->setVisible(false);
     }else{
         QMessageBox::critical(this, "Uy...", "Hubo un fallo");
     }

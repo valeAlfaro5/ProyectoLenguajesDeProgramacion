@@ -32,7 +32,8 @@ public:
         if (buscarReservacion->objectName().isEmpty())
             buscarReservacion->setObjectName("buscarReservacion");
         buscarReservacion->resize(383, 253);
-        buscarReservacion->setStyleSheet(QString::fromUtf8("background-color:rgb(228, 235, 156)"));
+        buscarReservacion->setStyleSheet(QString::fromUtf8("background-color: rgb(237, 232, 208);\n"
+""));
         buttonBox = new QDialogButtonBox(buscarReservacion);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setGeometry(QRect(-70, 190, 341, 32));

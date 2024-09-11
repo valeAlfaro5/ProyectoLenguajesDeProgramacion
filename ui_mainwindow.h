@@ -57,7 +57,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(842, 756);
+        MainWindow->resize(861, 756);
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(83, 123, 47);"));
         actionSalir = new QAction(MainWindow);
         actionSalir->setObjectName("actionSalir");
@@ -91,7 +91,7 @@ public:
 "font: 700 24pt \"Georgia\";"));
         tabWidget = new QTabWidget(widget);
         tabWidget->setObjectName("tabWidget");
-        tabWidget->setGeometry(QRect(50, 360, 721, 321));
+        tabWidget->setGeometry(QRect(50, 350, 721, 341));
         tab = new QWidget();
         tab->setObjectName("tab");
         listWidget = new QListWidget(tab);
@@ -116,7 +116,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(160, 10, 411, 261));
+        tableWidget->setGeometry(QRect(30, 10, 661, 261));
         tableWidget->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "font: 700 14pt \"Georgia\";"));
         tabWidget->addTab(tab_2, QString());
@@ -126,7 +126,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 842, 24));
+        menubar->setGeometry(QRect(0, 0, 861, 24));
         menuMenu = new QMenu(menubar);
         menuMenu->setObjectName("menuMenu");
         menuReservas = new QMenu(menuMenu);

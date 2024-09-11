@@ -11,13 +11,13 @@ CONFIG += c++17
 SOURCES += \
     ManejoRestaurante.cpp \
     buscarreservacion.cpp \
-    crearmesas.cpp \
     crearmesas3.cpp \
     databasemanager.cpp \
     form.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    manejarmesas.cpp \
     modificar_reserva.cpp \
     nuevareserva.cpp
 
@@ -25,22 +25,22 @@ SOURCES += \
 HEADERS += \
     ManejoRestaurante.h \
     buscarreservacion.h \
-    crearmesas.h \
     crearmesas3.h \
     databasemanager.h \
     form.h \
     login.h \
     mainwindow.h \
+    manejarmesas.h \
     modificar_reserva.h \
     nuevareserva.h
 
 FORMS += \
     buscarreservacion.ui \
-    crearmesas.ui \
     crearmesas3.ui \
     form.ui \
     login.ui \
     mainwindow.ui \
+    manejarmesas.ui \
     modificar_reserva.ui \
     nuevareserva.ui
 
