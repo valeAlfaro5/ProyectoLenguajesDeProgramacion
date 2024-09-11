@@ -9,7 +9,6 @@ crearmesas3::crearmesas3(QWidget *parent)
 
 
     ui->setupUi(this);
-    llenarComboBoxMesas(ui->comboBox);
 }
 
 crearmesas3::~crearmesas3()
@@ -58,74 +57,14 @@ bool crearmesas3::crearMesa(int mesaID, int tamanio)
     }
 }
 
-bool crearmesas3::activarMesa(int mesaID) {
-    QSqlQuery query;
-    query.prepare("UPDATE Mesa SET activa = true WHERE mesaID = :mesaID");
-    query.bindValue(":mesaID", mesaID);
 
-    if (query.exec()) {
-        qDebug() << "Mesa con ID " << mesaID << " activada.";
-        return true;
-    } else {
-        qDebug() << "Error: " << query.lastError().text();
-        return false;
-    }
-}
-
-bool crearmesas3::desactivarMesa(int mesaID) {
-    QSqlQuery query;
-
-    //Verque no hayan reservaciones activas vinculadas a la mesa
-    query.prepare("SELECT COUNT(*) FROM Reservaciones WHERE mesaID = :mesaID AND activo = true");
-    query.bindValue(":mesaID", mesaID);
-
-    if (!query.exec() || !query.next()) {
-        qDebug() << "Error: " << query.lastError().text();
-        return false;
-    }
-
-    int activeReservationsCount = query.value(0).toInt();
-    if (activeReservationsCount > 0) {
-        qDebug() << "Error: No se puede porque tiene reservaciones activas.";
-        return false;
-    }
-
-    //Desactivar
-    query.prepare("UPDATE Mesa SET activa = false WHERE mesaID = :mesaID");
-    query.bindValue(":mesaID", mesaID);
-
-    if (query.exec()) {
-        qDebug() << "Mesa con ID " << mesaID << " desactivada.";
-        return true;
-    } else {
-        qDebug() << "Error: " << query.lastError().text();
-        return false;
-    }
-}
-
-void crearmesas3::llenarComboBoxMesas(QComboBox *comboBox)
-{
-    comboBox->clear();
-
-    QSqlQuery query;
-    query.prepare("SELECT mesaID FROM Mesa");
-
-    if (query.exec()) {
-        while (query.next()) {
-            int mesaID = query.value(0).toInt();
-            comboBox->addItem(QString::number(mesaID));
-        }
-        qDebug() << "ComboBox llenado";
-    } else {
-        qDebug() << "Error: " << query.lastError().text();
-    }
-}
 void crearmesas3::on_crearMesita_clicked()
 {
 
     if(crearMesa(ui->numeroMesa->text().toInt(), ui->cantidad->currentText().toInt())){
         QMessageBox::information(this, "EXITO!", "Mesa creada exitosamente!");
-        llenarComboBoxMesas(ui->comboBox);
+        // llenarComboBoxMesas(ui->cantidad);
+        this->setVisible(false);
 
     }else{
         QMessageBox::critical(this, "CHIVA!", "No se pudo crear la mesa.!");
@@ -133,27 +72,4 @@ void crearmesas3::on_crearMesita_clicked()
 
 }
 
-
-void crearmesas3::on_activarMesa_clicked()
-{
-
-    if(activarMesa(ui->comboBox->currentText().toInt())){
-        QMessageBox::information(this, "EXITO!", "Mesa activada!");
-    }else{
-        QMessageBox::critical(this, "CHIVA!", "No se pudo activar la mesa.");
-    }
-
-}
-
-
-void crearmesas3::on_desactivarMesa_clicked()
-{
-
-    if(desactivarMesa(ui->comboBox->currentText().toInt())){
-        QMessageBox::information(this, "EXITO!", "Mesa desactivada!");
-    }else{
-        QMessageBox::critical(this, "CHIVA!", "No se pudo desactivar la mesa.");
-    }
-
-}
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>763</width>
+    <width>400</width>
     <height>476</height>
    </rect>
   </property>
@@ -71,29 +71,6 @@ color: rgb(45, 81, 40);
     <string>Personas en Mesa: </string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>170</y>
-     <width>121</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="activarMesa">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>240</y>
-     <width>111</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Activar</string>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="numeroMesa">
    <property name="geometry">
     <rect>
@@ -102,24 +79,6 @@ color: rgb(45, 81, 40);
      <width>113</width>
      <height>21</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>60</y>
-     <width>321</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 700 24pt &quot;Georgia&quot;;
-color: rgb(45, 81, 40);
-</string>
-   </property>
-   <property name="text">
-    <string>MANEJAR MESAS</string>
    </property>
   </widget>
   <widget class="QPushButton" name="crearMesita">
@@ -153,28 +112,10 @@ color: rgb(45, 81, 40);
     <string>Numero de Mesa: </string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>140</y>
-     <width>181</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;
-color: rgb(45, 81, 40);
-</string>
-   </property>
-   <property name="text">
-    <string>Numero de Mesa: </string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>80</x>
      <y>60</y>
      <width>271</width>
      <height>61</height>
@@ -187,19 +128,6 @@ color: rgb(45, 81, 40);
    </property>
    <property name="text">
     <string>CREAR MESAS</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="desactivarMesa">
-   <property name="geometry">
-    <rect>
-     <x>580</x>
-     <y>240</y>
-     <width>111</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Desactivar</string>
    </property>
   </widget>
  </widget>

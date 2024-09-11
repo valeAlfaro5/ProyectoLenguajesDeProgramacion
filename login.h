@@ -27,6 +27,7 @@ private:
     MainWindow main;
     Form formito;
     QSqlDatabase& db;
+    QMessageBox msgBox;
     Ui::Login *ui;
 };
 

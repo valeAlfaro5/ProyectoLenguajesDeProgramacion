@@ -33,28 +33,27 @@ bool Login::validarCliente(int clienteID, const QString& telefono) {
 
 void Login::on_loginButton_clicked()
 {
+    if(ui->numeroCliente->text().isEmpty() || ui->telefono->text().isEmpty()){
+        msgBox.setWindowTitle("ERROR!");
+        msgBox.setText("Uno de los campos está vacío!");
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setStyleSheet("QLabel { color: red; }");
+        msgBox.exec();
+    }else{
 
-    if(validarCliente(ui->nombreCliente->text().toInt(), ui->password->text())){
+    if(validarCliente(ui->numeroCliente->text().toInt(), ui->telefono->text())){
 
-        //QMessageBox::information(this, "EXITO!", "Ha ingresado con exito al Restaurante!");
         main.show();
-        //formito.show();
         this->setVisible(false);
 
     }else{
+        msgBox.setWindowTitle("ERROR!");
+        msgBox.setText("ClienteID y/o telefono incorrecto.");
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.setStyleSheet("QLabel { color: red; }");
+        msgBox.exec();
 
-        QMessageBox::information(this, "ERROR!", "ClienteID y/o telefono incorrecto.");
     }
 
-    /*
-    if(ui->nombreCliente->text().isEmpty() && ui->password->text().isEmpty()){
-        QMessageBox::information(this, "ERROR!", "El nombre del Cliente o la contraseña estan vacios.\nAsegurese de llenar todos los campos.");
-    }else{
-        QMessageBox::information(this, "EXITO!", "Ha ingresado con exito al Restaurante!");
-        main.show();
-        //formito.show();
-        this->setVisible(false);
-    }
-*/
 }
-
+}

@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(141, 168, 80);
+   <string notr="true">background-color: rgb(237, 232, 208);
 </string>
   </property>
   <widget class="QPushButton" name="loginButton">
@@ -33,30 +33,33 @@
     <string>Login</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="nombreCliente">
+  <widget class="QLineEdit" name="numeroCliente">
    <property name="geometry">
     <rect>
      <x>180</x>
      <y>100</y>
-     <width>141</width>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;</string>
+    <string notr="true">font: 700 14pt &quot;Georgia&quot;;
+color: rgb(45, 81, 40);</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="password">
+  <widget class="QLineEdit" name="telefono">
    <property name="geometry">
     <rect>
      <x>180</x>
      <y>160</y>
-     <width>141</width>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;</string>
+    <string notr="true">font: 700 14pt &quot;Georgia&quot;;
+color: rgb(45, 81, 40);
+</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -69,10 +72,12 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;</string>
+    <string notr="true">font: 700 14pt &quot;Georgia&quot;;
+color: rgb(45, 81, 40);
+background-color: rgba(255, 255, 255, 0);</string>
    </property>
    <property name="text">
-    <string>Nombre: </string>
+    <string>Numero:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -85,23 +90,27 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 14pt &quot;Georgia&quot;;</string>
+    <string notr="true">color: rgb(45, 81, 40);
+background-color: rgba(255, 255, 255, 0);
+font: 700 14pt &quot;Georgia&quot;;</string>
    </property>
    <property name="text">
-    <string>Password: </string>
+    <string>Telefono:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>150</x>
      <y>30</y>
-     <width>151</width>
+     <width>111</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 700 24pt &quot;Georgia&quot;;</string>
+    <string notr="true">font: 700 24pt &quot;Georgia&quot;;
+color: rgb(45, 81, 40);
+background-color: rgba(255, 255, 255, 0);</string>
    </property>
    <property name="text">
     <string>LOGIN</string>

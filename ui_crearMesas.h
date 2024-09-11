@@ -10,77 +10,57 @@
 #define UI_CREARMESAS_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_crearMesas
 {
 public:
-    QDialogButtonBox *buttonBox;
-    QLabel *label;
-    QLabel *label_2;
-    QLabel *label_3;
-    QComboBox *cantidad;
-    QLineEdit *numeroMesa;
+    QPushButton *desactivarMesa;
+    QLabel *label_5;
+    QComboBox *comboBox;
+    QLabel *label_4;
+    QPushButton *activarMesa;
 
     void setupUi(QDialog *crearMesas)
     {
         if (crearMesas->objectName().isEmpty())
             crearMesas->setObjectName("crearMesas");
-        crearMesas->resize(455, 296);
-        crearMesas->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(228, 235, 156);"));
-        buttonBox = new QDialogButtonBox(crearMesas);
-        buttonBox->setObjectName("buttonBox");
-        buttonBox->setGeometry(QRect(310, 140, 111, 71));
-        buttonBox->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
+        crearMesas->resize(474, 266);
+        crearMesas->setStyleSheet(QString::fromUtf8("background-color: rgb(237, 232, 208);\n"
+""));
+        desactivarMesa = new QPushButton(crearMesas);
+        desactivarMesa->setObjectName("desactivarMesa");
+        desactivarMesa->setGeometry(QRect(100, 190, 111, 51));
+        desactivarMesa->setStyleSheet(QString::fromUtf8("background-color: rgba(148, 17, 0, 234);\n"
+"color: rgb(255, 255, 255);"));
+        label_5 = new QLabel(crearMesas);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(160, 110, 181, 21));
+        label_5->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
 "color: rgb(45, 81, 40);\n"
 ""));
-        buttonBox->setOrientation(Qt::Orientation::Vertical);
-        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
-        label = new QLabel(crearMesas);
-        label->setObjectName("label");
-        label->setGeometry(QRect(150, 20, 211, 61));
-        label->setStyleSheet(QString::fromUtf8("font: 700 24pt \"Georgia\";\n"
+        comboBox = new QComboBox(crearMesas);
+        comboBox->setObjectName("comboBox");
+        comboBox->setGeometry(QRect(160, 150, 121, 24));
+        label_4 = new QLabel(crearMesas);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(110, 30, 321, 61));
+        label_4->setStyleSheet(QString::fromUtf8("font: 700 24pt \"Georgia\";\n"
 "color: rgb(45, 81, 40);\n"
 ""));
-        label_2 = new QLabel(crearMesas);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(100, 100, 141, 21));
-        label_2->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
-"color: rgb(45, 81, 40);\n"
-""));
-        label_3 = new QLabel(crearMesas);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(100, 200, 141, 21));
-        label_3->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
-"color: rgb(45, 81, 40);\n"
-""));
-        cantidad = new QComboBox(crearMesas);
-        cantidad->addItem(QString());
-        cantidad->addItem(QString());
-        cantidad->addItem(QString());
-        cantidad->addItem(QString());
-        cantidad->addItem(QString());
-        cantidad->setObjectName("cantidad");
-        cantidad->setGeometry(QRect(110, 240, 103, 32));
-        cantidad->setStyleSheet(QString::fromUtf8("font: 700 14pt \"Georgia\";\n"
-"color: rgb(45, 81, 40);\n"
-""));
-        numeroMesa = new QLineEdit(crearMesas);
-        numeroMesa->setObjectName("numeroMesa");
-        numeroMesa->setGeometry(QRect(110, 150, 113, 21));
+        activarMesa = new QPushButton(crearMesas);
+        activarMesa->setObjectName("activarMesa");
+        activarMesa->setGeometry(QRect(240, 190, 111, 51));
+        activarMesa->setStyleSheet(QString::fromUtf8("background-color: rgb(45, 81, 40);\n"
+"color: white;"));
 
         retranslateUi(crearMesas);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, crearMesas, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, crearMesas, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(crearMesas);
     } // setupUi
@@ -88,15 +68,10 @@ public:
     void retranslateUi(QDialog *crearMesas)
     {
         crearMesas->setWindowTitle(QCoreApplication::translate("crearMesas", "Dialog", nullptr));
-        label->setText(QCoreApplication::translate("crearMesas", "CREAR MESAS", nullptr));
-        label_2->setText(QCoreApplication::translate("crearMesas", "Numero de Mesa: ", nullptr));
-        label_3->setText(QCoreApplication::translate("crearMesas", "Personas en Mesa: ", nullptr));
-        cantidad->setItemText(0, QCoreApplication::translate("crearMesas", "2", nullptr));
-        cantidad->setItemText(1, QCoreApplication::translate("crearMesas", "4", nullptr));
-        cantidad->setItemText(2, QCoreApplication::translate("crearMesas", "6", nullptr));
-        cantidad->setItemText(3, QCoreApplication::translate("crearMesas", "8", nullptr));
-        cantidad->setItemText(4, QCoreApplication::translate("crearMesas", "10", nullptr));
-
+        desactivarMesa->setText(QCoreApplication::translate("crearMesas", "Desactivar", nullptr));
+        label_5->setText(QCoreApplication::translate("crearMesas", "Numero de Mesa: ", nullptr));
+        label_4->setText(QCoreApplication::translate("crearMesas", "MANEJAR MESAS", nullptr));
+        activarMesa->setText(QCoreApplication::translate("crearMesas", "Activar", nullptr));
     } // retranslateUi
 
 };

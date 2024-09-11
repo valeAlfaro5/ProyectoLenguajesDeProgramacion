@@ -121,15 +121,6 @@ bool ModificarReserva::cancelarReservacion(int reservaID)
 }
 
 
-
-
-
-void ModificarReserva::on_salirButton_clicked()
-{
-
-}
-
-
 void ModificarReserva::on_modificarButton_clicked()
 {
     if(modificarReservacion(reservaId, ui->dateEdit->date(), ui->timeEdit->time())){
@@ -149,6 +140,7 @@ void ModificarReserva::on_cancelarButton_clicked()
     if(cancelarReservacion(reservaId)){
 
         QMessageBox::information(this, "EXITO", "Reservacion Cancelada.");
+        this->setVisible(false);
 
     }else{
 
