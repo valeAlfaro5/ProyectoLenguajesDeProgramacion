@@ -19,6 +19,10 @@ public:
     ModificarReserva modificarReserva;
     QSqlDatabase& db;
     bool reservaIDExiste(int reservaID);
+    bool reservaExiste(int reservaID, int clienteID);
+    int rol;
+    int clienteID;
+
 
 private slots:
     void on_buttonBox_accepted();

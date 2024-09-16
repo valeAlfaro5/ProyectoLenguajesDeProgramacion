@@ -71,7 +71,7 @@ bool ManejoRestaurante::agregarCliente(const QString& nombre, const QString& tel
     return false;
 }
 
-//Verifica si hay una reservacion en esa fecha
+//Verifica si hay una reservacion en esa fecha y hora
 bool ManejoRestaurante::verificarDisponibilidad(int mesaID, const QDate& fecha, const QTime& hora) {
 
     QSqlQuery query;
@@ -188,7 +188,7 @@ bool ManejoRestaurante::clienteTieneReservaActiva(const QString& telefono, const
     }
 }
 
-bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString& telefono, int mesaID, int cantidadPersonas, QDateEdit* fechaEdit, QTimeEdit* horaEdit) {
+int ManejoRestaurante::agregarReservacion(const QString& nombre, const QString& telefono, int mesaID, int cantidadPersonas, QDateEdit* fechaEdit, QTimeEdit* horaEdit) {
     QDate fecha = fechaEdit->date();
     QTime hora = horaEdit->time();
 
@@ -197,14 +197,14 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
 
     if (reservationDateTime <= currentDateTime) {
         qDebug() << "Error: Ese tiempo ya paso.";
-        return false;
+        return 1;
     }
 
 
     //El restaurante opera de 1pm a 9pm
     if (hora < QTime(13, 0) || hora >= QTime(21, 0)) {
         qDebug() << "Error: Fuera de las horas del restaurante.";
-        return false;
+        return 2;
     }
 
     QSqlQuery query;
@@ -213,38 +213,39 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
     query.bindValue(":mesaID", mesaID);
     if (!query.exec() || !query.next()) {
         qDebug() << "Error: " << query.lastError().text();
-        return false;
+        return -1;
     }
 
     bool mesaActiva = query.value(0).toBool();
     if (!mesaActiva) {
         qDebug() << "Error: Mesa no esta activa";
-        return false;
+        return 3;
     }
 
     int clienteID;
     if (!clienteExiste(telefono, clienteID)) {
         if (!agregarCliente(nombre, telefono, clienteID)) {
             qDebug() << "Error: No se pudo agregar al cliente.";
-            return false;
+            return -2;
         }
     }
 
+    //No esta disponible
     if (!verificarDisponibilidad(mesaID, fecha, hora)) {
-        qDebug() << "Hubo un error.";
-        return false;
+        qDebug() << "No esta disponible en ese dia y hora.";
+        return 4;
     }
 
     //Un cliente solo puede tener una reserva activa por dia
     if(clienteTieneReservaActiva(telefono, fecha) == true){
         qDebug() << "Tiene reserva activa en la fecha.";
-        return false;
+        return 5;
     }
 
     //Maximo 3 reservas activas por cliente
     if(contarReservasActivasPorCliente(telefono) >= 3){
         qDebug() << "Alcanzo su limite de reservaciones.";
-        return false;
+        return 6;
     }
 
     /*
@@ -276,10 +277,10 @@ bool ManejoRestaurante::agregarReservacion(const QString& nombre, const QString&
         res.hora = hora;
 
         reservaciones.append(res);
-        return true;
+        return 7;
     } else {
         qDebug() << "Error: " << query.lastError().text();
-        return false;
+        return -3;
     }
 }
 
@@ -331,5 +332,24 @@ void ManejoRestaurante::llenarComboBoxCapacidadMesa(int mesaID, QComboBox* combo
         }
     } else {
         qDebug() << "Error: " << query.lastError().text();
+    }
+}
+
+bool ManejoRestaurante::clienteExiste(const QString &telefono)
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT clienteID FROM Cliente WHERE telefono = :telefono");
+    query.bindValue(":telefono", telefono);
+
+    if (!query.exec()) {
+        qDebug() << "Error :" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        return true;
+    } else {
+        return false;
     }
 }

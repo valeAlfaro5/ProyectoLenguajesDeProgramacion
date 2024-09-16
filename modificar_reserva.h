@@ -26,9 +26,6 @@ public:
 
 private slots:
 
-    void on_salirButton_clicked();
-
-
     void on_modificarButton_clicked();
 
     void on_cancelarButton_clicked();

@@ -17,9 +17,10 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    manejarmesas.cpp \
+    manejarmesas2.cpp \
+    nuevareserva.cpp \
     modificar_reserva.cpp \
-    nuevareserva.cpp
+    nuevareserva_cliente.cpp
 
 
 HEADERS += \
@@ -30,9 +31,10 @@ HEADERS += \
     form.h \
     login.h \
     mainwindow.h \
-    manejarmesas.h \
+    manejarmesas2.h \
+    nuevareserva.h \
     modificar_reserva.h \
-    nuevareserva.h
+    nuevareserva_cliente.h
 
 FORMS += \
     buscarreservacion.ui \
@@ -40,9 +42,10 @@ FORMS += \
     form.ui \
     login.ui \
     mainwindow.ui \
-    manejarmesas.ui \
+    manejarmesas2.ui \
+    nuevareserva.ui \
     modificar_reserva.ui \
-    nuevareserva.ui
+    nuevareserva_cliente.ui
 
 
 # Default rules for deployment.

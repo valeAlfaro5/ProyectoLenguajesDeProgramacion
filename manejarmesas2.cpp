@@ -1,23 +1,21 @@
-#include "manejarmesas.h"
-#include <QMessageBox>
+#include "manejarmesas2.h"
+#include "ui_manejarmesas2.h"
 
-
-manejarmesas::manejarmesas(QWidget *parent)
-    : QDialog(parent),
-     db(DatabaseManager::instance().getDatabase()),
-    ui(new Ui::manejarmesas)
+manejarmesas2::manejarmesas2(QWidget *parent)
+    : QWidget(parent),
+    db(DatabaseManager::instance().getDatabase()),
+    ui(new Ui::manejarmesas2)
 {
     ui->setupUi(this);
     llenarComboBoxMesas(ui->comboBox);
 }
 
-manejarmesas::~manejarmesas()
+manejarmesas2::~manejarmesas2()
 {
     delete ui;
 }
 
-
-bool ManejarMesas::activarMesa(int mesaID) {
+bool manejarmesas2::activarMesa(int mesaID) {
     QSqlQuery query;
     query.prepare("UPDATE Mesa SET activa = true WHERE mesaID = :mesaID");
     query.bindValue(":mesaID", mesaID);
@@ -31,7 +29,7 @@ bool ManejarMesas::activarMesa(int mesaID) {
     }
 }
 
-bool ManejarMesas::desactivarMesa(int mesaID) {
+bool manejarmesas2::desactivarMesa(int mesaID) {
     QSqlQuery query;
 
     //Verque no hayan reservaciones activas vinculadas a la mesa
@@ -62,7 +60,7 @@ bool ManejarMesas::desactivarMesa(int mesaID) {
     }
 }
 
-void ManejarMesas::llenarComboBoxMesas(QComboBox *comboBox)
+void manejarmesas2::llenarComboBoxMesas(QComboBox *comboBox)
 {
     comboBox->clear();
 
@@ -81,29 +79,27 @@ void ManejarMesas::llenarComboBoxMesas(QComboBox *comboBox)
 }
 
 
-void ManejarMesas::on_activarMesa_clicked()
+
+void manejarmesas2::on_desactivarMesa_clicked()
 {
-
-    if(activarMesa(ui->comboBox->currentText().toInt())){
-        QMessageBox::information(this, "EXITO!", "Mesa activada!");
-        this->setVisible(false);
-    }else{
-        QMessageBox::critical(this, "CHIVA!", "No se pudo activar la mesa.");
-    }
-
-}
-
-
-void ManejarMesas::on_desactivarMesa_clicked()
-{
-
     if(desactivarMesa(ui->comboBox->currentText().toInt())){
         QMessageBox::information(this, "EXITO!", "Mesa desactivada!");
-        this->setVisible(false);
+        //this->setVisible(false);
+        this->close();
     }else{
         QMessageBox::critical(this, "CHIVA!", "No se pudo desactivar la mesa.");
     }
-
 }
 
+
+void manejarmesas2::on_activarMesa_clicked()
+{
+    if(activarMesa(ui->comboBox->currentText().toInt())){
+        QMessageBox::information(this, "EXITO!", "Mesa activada!");
+        //this->setVisible(false);
+        this->close();
+    }else{
+        QMessageBox::critical(this, "CHIVA!", "No se pudo activar la mesa.");
+    }
+}
 

@@ -1,6 +1,7 @@
 #ifndef CREARMESAS3_H
 #define CREARMESAS3_H
 
+
 #include <QWidget>
 #include <QComboBox>
 #include <databasemanager.h>
@@ -18,8 +19,8 @@ public:
     explicit crearmesas3(QWidget *parent = nullptr);
     ~crearmesas3();
     bool crearMesa(int mesaID, int tamanio);
-
     QSqlDatabase& db;
+    void llenarComboBoxMesas(QComboBox *comboBox);
 
 private slots:
     void on_crearMesita_clicked();

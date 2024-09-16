@@ -20,11 +20,13 @@ class ManejoRestaurante : public QObject {
 
 public:
     explicit ManejoRestaurante(QObject *parent = nullptr);
-    bool agregarReservacion(const QString& nombre, const QString& telefono, int mesaID, int cantidadPersonas, QDateEdit* fechaEdit, QTimeEdit* horaEdit);
+    int agregarReservacion(const QString& nombre, const QString& telefono, int mesaID, int cantidadPersonas, QDateEdit* fechaEdit, QTimeEdit* horaEdit);
     void llenarComboBoxMesasDisponibles(QDateEdit* fechaEdit, QTimeEdit* horaEdit, QComboBox* comboBox);
     void llenarComboBoxCapacidadMesa(int mesaID, QComboBox* comboBox);
     bool validarCliente(int clienteID, const QString& telefono);
     QSqlDatabase& db;
+    bool clienteExiste(const QString& telefono);
+
 
 private:
     //QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");

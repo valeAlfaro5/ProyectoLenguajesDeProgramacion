@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include "nuevareserva.h"
 #include "buscarreservacion.h"
-#include "manejarmesas.h"
+#include "nuevareserva_cliente.h"
+//#include "manejarmesas.h"
+#include "manejarmesas2.h"
 #include "form.h"
 #include "crearmesas3.h"
 #include <QtSql/QSqlDatabase>
@@ -29,10 +31,22 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     NuevaReserva nuevaReserva;
-    ManejarMesas manejoMesas;
+    nuevareserva_cliente reservaCliente;
+    //ManejarMesas manejoMesas;
+    manejarmesas2 manejoMesas;
     BuscarReservacion buscarReservacion;
     Form formito;
     void llenarTablaReservaciones(QTableWidget *tableWidget);
+    void llenarTablaDisponibilidad(QTableWidget *tableWidget, const QDate& fecha, int mesaID);
+    void llenarComboBoxMesas(QComboBox *comboBox);
+    void llenarTablaMesas(QTableWidget* tableWidget);
+    void actualizarReservas();
+    int rol;
+    int clienteID;
+    QString telefono;
+    void llenarTablaReservacionesPorCliente(int clienteID, QTableWidget *tableWidget);
+    Ui::MainWindow *ui;
+
 
     //crearmesas2 creacionMesas;
     crearmesas3 creacionMesa;
@@ -49,8 +63,12 @@ private slots:
 
     void on_actionModificar_Mesa_triggered();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
-    Ui::MainWindow *ui;
+
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 };
 #endif // MAINWINDOW_H

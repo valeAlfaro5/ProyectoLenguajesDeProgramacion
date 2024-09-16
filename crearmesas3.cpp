@@ -57,13 +57,31 @@ bool crearmesas3::crearMesa(int mesaID, int tamanio)
     }
 }
 
+void crearmesas3::llenarComboBoxMesas(QComboBox *comboBox)
+{
+    comboBox->clear();
+
+    QSqlQuery query;
+    query.prepare("SELECT mesaID FROM Mesa");
+
+    if (query.exec()) {
+        while (query.next()) {
+            int mesaID = query.value(0).toInt();
+            comboBox->addItem(QString::number(mesaID));
+        }
+        qDebug() << "ComboBox llenado";
+    } else {
+        qDebug() << "Error: " << query.lastError().text();
+    }
+}
+
 
 void crearmesas3::on_crearMesita_clicked()
 {
 
     if(crearMesa(ui->numeroMesa->text().toInt(), ui->cantidad->currentText().toInt())){
         QMessageBox::information(this, "EXITO!", "Mesa creada exitosamente!");
-        // llenarComboBoxMesas(ui->cantidad);
+
         this->setVisible(false);
 
     }else{

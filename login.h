@@ -1,5 +1,6 @@
 #ifndef LOGIN_H
 #define LOGIN_H
+
 #include "mainwindow.h"
 #include "form.h"
 #include <QDialog>
@@ -17,6 +18,10 @@ public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
     bool validarCliente(int clienteID, const QString& telefono);
+    int obtenerRolCliente(const QString& telefono);
+    int obtenerClienteID(const QString& telefono);
+
+
 
 
 private slots:

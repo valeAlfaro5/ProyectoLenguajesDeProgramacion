@@ -29,7 +29,6 @@ void ModificarReserva::llenarInformacion(int numeroReserva)
 }
 
 
-
 bool ModificarReserva::modificarReservacion(int reservaID, QDate cambioFecha, QTime cambioHora)
 {
     QDateTime currentDateTime = QDateTime::currentDateTime();
