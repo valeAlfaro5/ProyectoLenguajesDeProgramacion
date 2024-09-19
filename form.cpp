@@ -56,7 +56,7 @@ void Form::on_pushButton_2_clicked()
 {
     if(hola.clienteExiste(ui->numeroTelefono->text()) == false && ui->nombreCliente->text().isEmpty()){
         QMessageBox::critical(this, "CHIVA!", "El cliente no existe. Tiene que ingresar un nombre.");
-
+        return;
     }
 
     int numeroRetornado = hola.agregarReservacion(ui->nombreCliente->text(),ui->numeroTelefono->text(), ui->mesasDisponibles->currentText().toInt(), ui->numeroComensales->currentText().toInt(), ui->dateEdit, ui->timeEdit);

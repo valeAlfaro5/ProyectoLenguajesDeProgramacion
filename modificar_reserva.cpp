@@ -10,8 +10,10 @@ ModificarReserva::ModificarReserva(QWidget *parent)
      ui(new Ui::modifcarReserva)
 {
     reservaId = -1;
-
     ui->setupUi(this);
+    ui->dateEdit->setDate(QDate::currentDate());
+    QTime time(13,0);
+    ui->timeEdit->setTime(time);
 }
 
 ModificarReserva::~ModificarReserva()
@@ -24,7 +26,7 @@ void ModificarReserva::llenarInformacion(int numeroReserva)
     if(numeroReserva!= 0 ){
 
     }else{
-        QMessageBox::information(this, "ERROR!", "No existe una reserva con ese numero!");
+        QMessageBox::critical(this, "ERROR!", "No existe una reserva con ese numero!");
     }
 }
 
@@ -129,7 +131,7 @@ void ModificarReserva::on_modificarButton_clicked()
 
 
     }else{
-        QMessageBox::information(this, "ERROR", "No se pudo modificar.");
+        QMessageBox::critical(this, "ERROR", "No se pudo modificar.");
     }
 }
 
